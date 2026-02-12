@@ -1,26 +1,39 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f8f8f8;
   --foreground: #171717;
+  --foreground-muted: #737373;
+  --border: #d6d6d6;
+  --card-bg: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-border: var(--border);
+  --color-card-bg: var(--card-bg);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-inter: var(--font-inter);
+  --font-family-inter: var(--font-inter);
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(180deg, #f8f8f8 0%, #e6e6e6 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+.font-inter {
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Ensure list bullets are visible (Tailwind preflight resets them) */
+ul.list-disc {
+  list-style-type: disc;
+  list-style-position: outside;
+  padding-left: 1.5rem;
 }
