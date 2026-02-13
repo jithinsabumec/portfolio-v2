@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 import {
   ToggleGroup,
   ToggleGroupItem,
@@ -178,8 +179,28 @@ function TimelineItem({
   );
 }
 
-export default function Home() {
-  const [activeTab, setActiveTab] = useState("product-design");
+function HomeContent() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const activeTabFromUrl = searchParams.get("tab");
+  const [activeTab, setActiveTab] = useState(activeTabFromUrl || "product-design");
+
+  useEffect(() => {
+    if (activeTabFromUrl && activeTabFromUrl !== activeTab) {
+      setActiveTab(activeTabFromUrl);
+    }
+  }, [activeTabFromUrl, activeTab]);
+
+  const handleTabChange = (val: string) => {
+    if (val) {
+      setActiveTab(val);
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("tab", val);
+      router.push(pathname + "?" + params.toString(), { scroll: false });
+    }
+  };
 
   return (
     <div className="min-h-screen">
@@ -306,9 +327,7 @@ export default function Home() {
                 <ToggleGroup
                   type="single"
                   value={activeTab}
-                  onValueChange={(val) => {
-                    if (val) setActiveTab(val);
-                  }}
+                  onValueChange={handleTabChange}
                   className="gap-1 sm:gap-2 flex-wrap justify-center"
                 >
                   {TABS.map((tab) => (
@@ -458,5 +477,13 @@ export default function Home() {
       {/* Bottom accent line */}
       <div className="h-px w-full bg-[#d6d6d6]" aria-hidden />
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="min-h-screen" />}>
+      <HomeContent />
+    </Suspense>
   );
 }
