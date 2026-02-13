@@ -35,7 +35,7 @@ export default function NoteablePage() {
                 </Link>
             </header>
 
-            <main className="mx-auto flex min-h-screen max-w-[512px] flex-col items-center justify-center gap-[32px] px-5 px-5 pt-10 pb-32 sm:px-0 sm:px-0">
+            <main className="mx-auto flex min-h-screen max-w-[512px] flex-col items-center justify-center gap-[32px] px-5 pt-10 pb-32 sm:px-0">
                 {/* Header Section */}
                 <div className="flex flex-col gap-6">
                     {/* Title & Tags */}
@@ -209,14 +209,14 @@ export default function NoteablePage() {
                                 <span>
                                     <span className="font-semibold">The Bottom Bar :</span> My favorite bit. It lives at the core of the app. Record or type—whatever&apos;s fastest for my brain right then.
                                 </span>
-                                <div className="w-full relative aspect-[512/200] rounded-none overflow-hidden bg-white pl-[157px]">
+                                <div className="w-full relative aspect-[512/200] rounded-none overflow-hidden bg-white flex items-center justify-center">
                                     <video
                                         src="/noteable/bottombar.m4v"
                                         autoPlay
                                         loop
                                         muted
                                         playsInline
-                                        className="absolute inset-0 h-full w-full object-cover pl-[34px] pr-[34px]"
+                                        className="h-full w-auto object-contain"
                                     />
                                 </div>
                             </div>

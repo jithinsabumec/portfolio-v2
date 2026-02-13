@@ -369,14 +369,14 @@ export default function Home() {
                       key={video.src}
                       className="flex flex-col gap-4 group w-full"
                     >
-                      <div className="relative w-full overflow-hidden rounded-[18px] h-fit border border-[#d7d7d7] shadow-[0px_2px_5px_0px_rgba(0,0,0,0.05)]">
+                      <div className="relative w-full overflow-hidden rounded-[18px] border border-[#d7d7d7] shadow-[0px_2px_5px_0px_rgba(0,0,0,0.05)] bg-[#f8f8f8]">
                         <video
                           src={video.src}
                           autoPlay
                           loop
                           muted
                           playsInline
-                          className="w-full h-fit object-cover transition-transform duration-500 group-hover:scale-105 border-0"
+                          className="w-full h-auto block transition-transform duration-500 group-hover:scale-105"
                         />
                       </div>
                       <p className="font-sans text-lg font-medium text-[#171717]">
