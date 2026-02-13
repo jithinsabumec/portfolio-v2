@@ -19,9 +19,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Jithin — Portfolio v2",
+  title: "Portfolio | Jithin Sabu",
   description:
     "Multidisciplinary designer shaping digital experiences through product, motion, and visual storytelling.",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    title: "  ",
+  },
 };
 
 export default function RootLayout({
