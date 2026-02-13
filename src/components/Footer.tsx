@@ -104,7 +104,7 @@ export default function Footer() {
 
             {/* Bottom Bar */}
             <div className="bg-black w-full min-h-[48px] py-4 flex items-center justify-center">
-                <div className="flex flex-col sm:flex-row items-center gap-1.5 md:gap-1.5 text-white text-[15px] sm:text-[17px] font-normal font-sans text-center">
+                <div className="flex flex-row items-center gap-2 md:gap-2 text-white text-[15px] sm:text-[17px] font-normal font-sans text-center">
                     <span>Made by Jithin </span>
                     <span className="inline-flex items-center gap-1.5 opacity-[0.35]">
                         <span>(and </span>

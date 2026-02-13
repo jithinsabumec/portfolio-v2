@@ -31,10 +31,10 @@ const TABS = [
 ];
 
 const MOTION_VIDEOS = [
-  { src: "/noteable/bottombar.m4v", title: "Bottom Bar Interaction" },
-  { src: "/noteable/switch.m4v", title: "Switch Interaction" },
-  { src: "/noteable/tick.m4v", title: "Checkmark Animation" },
-  { src: "/noteable/write-erase.m4v", title: "Writing Animation" },
+  { src: "/noteable/bottombar.m4v", title: "Bottom Bar Interaction", unoptimized: true },
+  { src: "/noteable/switch.m4v", title: "Switch Interaction", unoptimized: true },
+  { src: "/noteable/tick.m4v", title: "Checkmark Animation", unoptimized: true },
+  { src: "/noteable/write-erase.m4v", title: "Writing Animation", unoptimized: true },
 ];
 
 const GRAPHIC_DESIGN_PROJECTS = [
