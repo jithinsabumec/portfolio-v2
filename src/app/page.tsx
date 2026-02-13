@@ -153,14 +153,14 @@ function TimelineItem({
   subtitle: string;
 }) {
   return (
-    <div className="flex flex-row flex-wrap items-center justify-between gap-4">
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4">
       <div className="flex items-center gap-2">
         <span className="font-mono text-sm text-[#737373]">{year}</span>
         <span className="font-sans text-sm font-normal text-[#171717]">
           {title}
         </span>
       </div>
-      <p className="font-sans text-sm text-[#737373]">{subtitle}</p>
+      <p className="font-sans text-sm text-[#737373] sm:text-right">{subtitle}</p>
     </div>
   );
 }
@@ -171,21 +171,22 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Header: logo + CTAs, same max-width as main content */}
-      <header className="mx-auto flex max-w-[512px] items-center justify-between px-0 py-4">
-        <span className="font-sans text-xl font-semibold text-[#737373] transition-colors hover:text-[#171717]">
+      <header className="mx-auto flex max-w-[512px] items-center justify-between px-5 py-4 sm:px-0">
+        <span className="font-sans text-xl font-semibold text-[#737373] transition-colors hover:text-[#171717] shrink-0">
           J.
         </span>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
           <Button
             href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            className="whitespace-nowrap px-3 sm:px-4"
           >
             view resume
           </Button>
           <Button
             href="https://www.linkedin.com/in/jithinsabu/"
-            className="inline-flex gap-2"
+            className="inline-flex gap-2 whitespace-nowrap px-3 sm:px-4"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -197,15 +198,16 @@ export default function Home() {
               className="shrink-0"
               unoptimized
             />
-            LINKEDIN
+            <span className="hidden xs:inline">LINKEDIN</span>
+            <span className="xs:hidden">LI</span>
           </Button>
         </div>
       </header>
 
-      <main className="mx-auto flex min-h-screen max-w-[512px] flex-col items-center justify-center gap-12 px-0 py-24">
+      <main className="mx-auto flex min-h-screen max-w-[512px] flex-col items-center justify-center gap-12 px-5 py-24 sm:px-0">
         {/* Hero */}
         <section className="flex w-full flex-col items-center gap-[18px] text-center">
-          <p className="font-inter text-left text-xl leading-[1.5em] text-black">
+          <p className="font-inter text-left text-lg sm:text-xl leading-[1.5em] text-black">
             I&apos;m Jithin, a multidisciplinary designer shaping digital
             experiences through product, motion, and visual storytelling.{" "}
             <span className="text-[#737373]">
@@ -279,21 +281,21 @@ export default function Home() {
                   onValueChange={(val) => {
                     if (val) setActiveTab(val);
                   }}
-                  className="gap-2"
+                  className="gap-1 sm:gap-2 flex-wrap justify-center"
                 >
                   {TABS.map((tab) => (
                     <ToggleGroupItem
                       key={tab.id}
                       value={tab.id}
-                      className="gap-2 rounded-xl px-[17px] py-2.5 font-sans text-sm font-medium leading-[1.25em] text-[#171717] opacity-50 data-[state=on]:opacity-100 hover:opacity-70 hover:bg-transparent data-[state=on]:bg-transparent transition-all"
+                      className="gap-1.5 sm:gap-2 rounded-xl px-3 sm:px-[17px] py-2 sm:py-2.5 font-sans text-[13px] sm:text-sm font-medium leading-[1.25em] text-[#171717] opacity-50 data-[state=on]:opacity-100 hover:opacity-70 hover:bg-transparent data-[state=on]:bg-transparent transition-all whitespace-nowrap"
                     >
                       {tab.icon && (
                         <Image
                           src={tab.icon}
                           alt=""
-                          width={16}
-                          height={16}
-                          className="shrink-0"
+                          width={14}
+                          height={14}
+                          className="shrink-0 sm:w-4 sm:h-4"
                           unoptimized
                         />
                       )}

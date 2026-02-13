@@ -29,13 +29,13 @@ export default function NoteablePage() {
     return (
         <div className="min-h-screen">
             {/* Header: logo, same max-width as main content */}
-            <header className="mx-auto flex max-w-[512px] items-center justify-between px-0 py-4">
+            <header className="mx-auto flex max-w-[512px] items-center justify-between px-5 py-4 sm:px-0">
                 <Link href="/" className="font-sans text-xl font-semibold text-[#737373] transition-colors hover:text-[#171717]">
                     J.
                 </Link>
             </header>
 
-            <main className="mx-auto flex min-h-screen max-w-[512px] flex-col items-center justify-center gap-[32px] pt-10 pb-32">
+            <main className="mx-auto flex min-h-screen max-w-[512px] flex-col items-center justify-center gap-[32px] px-5 px-5 pt-10 pb-32 sm:px-0 sm:px-0">
                 {/* Header Section */}
                 <div className="flex flex-col gap-6">
                     {/* Title & Tags */}
@@ -45,7 +45,7 @@ export default function NoteablePage() {
                         </h1>
 
                         <div className="flex flex-wrap gap-2">
-                           
+
                             <Tag className="text-[#171717] rounded-[17px]">
                                 <Image
                                     src="/icons/phone-icon.svg"
@@ -172,14 +172,14 @@ export default function NoteablePage() {
                                     <span className="font-semibold">Time and Date-based Notes & Tasks :</span> Notes and tasks are auto-sorted by date, and the app figures out whether each recording is a note or a task—all on its own.
                                 </span>
                                 <div className="w-full h-fit rounded-none overflow-hidden bg-gray-100">
-                                <Image
-                                    src="/noteable/image-1-ideas-time-date.png"
-                                    alt="Time based notes"
-                                    width={976}
-                                    height={594}
-                                    className="w-full h-auto object-cover rounded-none"
-                                    unoptimized
-                                />
+                                    <Image
+                                        src="/noteable/image-1-ideas-time-date.png"
+                                        alt="Time based notes"
+                                        width={976}
+                                        height={594}
+                                        className="w-full h-auto object-cover rounded-none"
+                                        unoptimized
+                                    />
                                 </div>
                             </div>
                         </li>
@@ -188,17 +188,17 @@ export default function NoteablePage() {
                         <li>
                             <div className="flex flex-col gap-4">
                                 <span>
-                                <span className="font-semibold">Homescreen & Lockscreen Widgets :</span> Always just a tap away—on my phone, wherever I am—because inspiration doesn&apos;t care if my device is locked or not.
-                            </span>
-                            <div className="w-full h-fit rounded-none overflow-hidden bg-transparent">
-                                <Image
-                                    src="/noteable/image-2-ideas-widgets.png"
-                                    alt="Homescreen & Lockscreen Widgets"
-                                    width={512}
-                                    height={400}
-                                    className="w-full h-auto object-cover rounded-none"
-                                    unoptimized
-                                />
+                                    <span className="font-semibold">Homescreen & Lockscreen Widgets :</span> Always just a tap away—on my phone, wherever I am—because inspiration doesn&apos;t care if my device is locked or not.
+                                </span>
+                                <div className="w-full h-fit rounded-none overflow-hidden bg-transparent">
+                                    <Image
+                                        src="/noteable/image-2-ideas-widgets.png"
+                                        alt="Homescreen & Lockscreen Widgets"
+                                        width={512}
+                                        height={400}
+                                        className="w-full h-auto object-cover rounded-none"
+                                        unoptimized
+                                    />
                                 </div>
                             </div>
                         </li>
@@ -207,17 +207,17 @@ export default function NoteablePage() {
                         <li>
                             <div className="flex flex-col gap-4">
                                 <span>
-                                <span className="font-semibold">The Bottom Bar :</span> My favorite bit. It lives at the core of the app. Record or type—whatever&apos;s fastest for my brain right then.
-                            </span>
-                            <div className="w-full relative aspect-[512/200] rounded-none overflow-hidden bg-white pl-[157px]">
-                                <video
-                                    src="/noteable/bottombar.m4v"
-                                    autoPlay
-                                    loop
-                                    muted
-                                    playsInline
-                                    className="absolute inset-0 h-full w-full object-cover pl-[34px] pr-[34px]"
-                                />
+                                    <span className="font-semibold">The Bottom Bar :</span> My favorite bit. It lives at the core of the app. Record or type—whatever&apos;s fastest for my brain right then.
+                                </span>
+                                <div className="w-full relative aspect-[512/200] rounded-none overflow-hidden bg-white pl-[157px]">
+                                    <video
+                                        src="/noteable/bottombar.m4v"
+                                        autoPlay
+                                        loop
+                                        muted
+                                        playsInline
+                                        className="absolute inset-0 h-full w-full object-cover pl-[34px] pr-[34px]"
+                                    />
                                 </div>
                             </div>
                         </li>
@@ -226,17 +226,17 @@ export default function NoteablePage() {
                         <li>
                             <div className="flex flex-col gap-4">
                                 <span>
-                                <span className="font-semibold">AI is not free :</span> Because Noteable relies on AI-driven features to automatically transcribe and organize your notes, it has associated costs that make charging users a necessary step to maintain quality and sustainability.
-                            </span>
-                            <div className="w-full h-fit rounded-none overflow-hidden bg-gray-100">
-                                <Image
-                                    src="/noteable/image-4-ideas-ai-cost.png"
-                                    alt="Pricing screens"
-                                    width={512}
-                                    height={340}
-                                    className="w-full h-auto object-cover rounded-none"
-                                    unoptimized
-                                />
+                                    <span className="font-semibold">AI is not free :</span> Because Noteable relies on AI-driven features to automatically transcribe and organize your notes, it has associated costs that make charging users a necessary step to maintain quality and sustainability.
+                                </span>
+                                <div className="w-full h-fit rounded-none overflow-hidden bg-gray-100">
+                                    <Image
+                                        src="/noteable/image-4-ideas-ai-cost.png"
+                                        alt="Pricing screens"
+                                        width={512}
+                                        height={340}
+                                        className="w-full h-auto object-cover rounded-none"
+                                        unoptimized
+                                    />
                                 </div>
                             </div>
                         </li>

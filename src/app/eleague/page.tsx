@@ -68,13 +68,13 @@ export default function ELeaguePage() {
     return (
         <div className="min-h-screen">
             {/* Header: logo */}
-            <header className="mx-auto flex max-w-[512px] items-center justify-between px-0 py-4">
+            <header className="mx-auto flex max-w-[512px] items-center justify-between px-5 py-4 sm:px-0">
                 <Link href="/" className="font-sans text-xl font-semibold text-[#737373] transition-colors hover:text-[#171717]">
                     J.
                 </Link>
             </header>
 
-            <main className="mx-auto flex min-h-screen max-w-[512px] flex-col items-center justify-center gap-[32px] pt-10 pb-32">
+            <main className="mx-auto flex min-h-screen max-w-[512px] flex-col items-center justify-center gap-[32px] px-5 pt-10 pb-32 sm:px-0">
                 {/* Header Section */}
                 <div className="flex w-full flex-col gap-6">
                     {/* Title & Subtitle */}
