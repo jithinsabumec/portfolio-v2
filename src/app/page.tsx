@@ -7,6 +7,12 @@ import {
   ToggleGroup,
   ToggleGroupItem,
 } from "@/components/animate-ui/components/radix/toggle-group";
+import {
+  PreviewLinkCard,
+  PreviewLinkCardTrigger,
+  PreviewLinkCardContent,
+  PreviewLinkCardImage,
+} from "@/components/animate-ui/components/radix/preview-link-card";
 import { AnimatePresence, motion } from "motion/react";
 
 const TABS = [
@@ -71,28 +77,35 @@ const GRAPHIC_DESIGN_PROJECTS = [
 ];
 
 const work = [
-  { year: "2026", company: "Plenti", role: "Design Intern - UI/UX & Branding" },
+  {
+    year: "2026",
+    company: "Plenti",
+    role: "Design Intern - UI/UX & Branding",
+    href: "https://www.plenti.co.in/",
+  },
   {
     year: "2025",
-    company: "Superlinear Technologies Pvt. Ltd.",
+    company: "Superr",
     role: "Product Design Intern",
+    href: "https://www.superr.ai/",
   },
   {
     year: "2023",
-    company: "Fundfolio Fintech Pvt. Ltd",
+    company: "marketfeed.",
     role: "Video Editor",
+    href: "https://www.marketfeed.com/",
   },
 ];
 
 const education = [
   {
     year: "2025",
-    school: "Maynooth University",
+    school: "Maynooth University, Ireland",
     degree: "MSc in Design Innovation",
   },
   {
     year: "2019",
-    school: "Govt. Model Engineering College",
+    school: "Govt. Model Engineering College, Kochi, India",
     degree: "B.Tech in ECE",
   },
 ];
@@ -107,7 +120,7 @@ function Button({
     <Link
       href={href}
       className={
-        "inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-[#d6d6d6] bg-white px-4 py-1.5 font-mono text-sm uppercase leading-[2em] text-[#171717] shadow-[0px_2px_5px_0px_rgba(0,0,0,0.05)] transition hover:border-[#b0b0b0] hover:shadow-md " +
+        "inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-[#d6d6d6] bg-white px-4 py-1.5 font-mono text-sm uppercase leading-[2em] text-[#171717] transition hover:border-[#c1c1c1]  hover:bg-[#ffffff] hover:[filter:drop-shadow(0px_2px_5px_rgba(0,0,0,0.05))] " +
         className
       }
       {...props}
@@ -172,10 +185,10 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Header: logo + CTAs, same max-width as main content */}
       <header className="mx-auto flex max-w-[512px] items-center justify-between px-5 py-4 sm:px-0">
-        <span className="font-sans text-xl font-semibold text-[#737373] transition-colors hover:text-[#171717] shrink-0">
+        <span className="font-sans text-xl font-semibold text-[#737373] transition-colors hover:text-[#171717] shrink-0 cursor-pointer hover:bg-[#ffffff] hover:[filter:drop-shadow(0px_2px_5px_rgba(0,0,0,0.05))]">
           J.
         </span>
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar">
+        <div className="flex items-center gap-3">
           <Button
             href="/resume.pdf"
             target="_blank"
@@ -238,12 +251,27 @@ export default function Home() {
           />
           <div className="flex flex-col gap-4">
             {work.map((item) => (
-              <TimelineItem
+              <div
                 key={item.company}
-                year={item.year}
-                title={item.company}
-                subtitle={item.role}
-              />
+                className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-4"
+              >
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-sm text-[#737373]">
+                    {item.year}
+                  </span>
+                  <PreviewLinkCard href={item.href}>
+                    <PreviewLinkCardTrigger className="font-sans text-sm font-normal text-[#171717] underline decoration-[#d6d6d6] underline-offset-2 transition-colors hover:decoration-[#171717]">
+                      {item.company}
+                    </PreviewLinkCardTrigger>
+                    <PreviewLinkCardContent>
+                      <PreviewLinkCardImage alt={`${item.company} website preview`} />
+                    </PreviewLinkCardContent>
+                  </PreviewLinkCard>
+                </div>
+                <p className="font-sans text-sm text-[#737373] sm:text-right">
+                  {item.role}
+                </p>
+              </div>
             ))}
           </div>
         </section>
