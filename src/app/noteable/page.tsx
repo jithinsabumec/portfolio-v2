@@ -30,12 +30,12 @@ export default function NoteablePage() {
         <div className="min-h-screen">
             {/* Header: logo, same max-width as main content */}
             <header className="mx-auto flex max-w-[512px] items-center justify-between px-0 py-4">
-                <Link href="/" className="font-sans text-4xl font-medium text-[#737373]">
+                <Link href="/" className="font-sans text-xl font-semibold text-[#737373] transition-colors hover:text-[#171717]">
                     J.
                 </Link>
             </header>
 
-            <main className="mx-auto flex min-h-screen max-w-[512px] flex-col items-center justify-center gap-[52px] pt-10 pb-32">
+            <main className="mx-auto flex min-h-screen max-w-[512px] flex-col items-center justify-center gap-[32px] pt-10 pb-32">
                 {/* Header Section */}
                 <div className="flex flex-col gap-6">
                     {/* Title & Tags */}
@@ -45,8 +45,7 @@ export default function NoteablePage() {
                         </h1>
 
                         <div className="flex flex-wrap gap-2">
-                            <Tag className="border-[#2357ff] text-[#2357ff]">Product Design</Tag>
-                            <Tag className="border-[#9100bc] text-[#9100bc]">Brand/Logo Design</Tag>
+                           
                             <Tag className="text-[#171717] rounded-[17px]">
                                 <Image
                                     src="/icons/phone-icon.svg"
@@ -54,6 +53,7 @@ export default function NoteablePage() {
                                     width={12}
                                     height={12}
                                     className="shrink-0 mr-1"
+                                    unoptimized
                                 />
                                 Mobile App
                             </Tag>
@@ -65,21 +65,22 @@ export default function NoteablePage() {
                         <span className="font-mono text-base uppercase text-[#737373]">Softwares used:</span>
                         <div className="flex items-center gap-6">
                             <div className="relative h-[22px] w-[15px]">
-                                <Image src="/icons/figma-logo.png" alt="Figma" fill className="object-contain" />
+                                <Image src="/icons/figma-logo.png" alt="Figma" fill className="object-contain" unoptimized />
                             </div>
                             <div className="relative h-[26px] w-[26px]">
-                                <Image src="/icons/rive-logo.png" alt="Rive" fill className="object-contain" />
+                                <Image src="/icons/rive-logo.png" alt="Rive" fill className="object-contain" unoptimized />
                             </div>
                         </div>
                     </section>
 
                     {/* Hero Image */}
-                    <div className="w-full relative aspect-[512/380] rounded-[18px] overflow-hidden bg-gray-100">
+                    <div className="w-full relative aspect-[512/380] rounded-[18px] overflow-hidden bg-gray-100 border border-[#d7d7d7] shadow-[0px_2px_5px_0px_rgba(0,0,0,0.05)]">
                         <Image
-                            src="/noteable-header.png"
+                            src="/noteable/noteable-header.jpg"
                             alt="Noteable Hero"
                             fill
                             className="object-cover"
+                            unoptimized
                         />
                     </div>
                 </div>
@@ -93,12 +94,14 @@ export default function NoteablePage() {
                     <p className="font-sans text-base leading-[22.5px] text-[#171717]">
                         I&apos;m always getting ideas at the worst times—walking, commuting, or about to fall asleep. I wanted a place where thoughts could land instantly, without scrolling through lists or losing the moment. That&apos;s what sparked Noteable: a voice-first app designed just for catching those random bursts of inspiration.
                     </p>
-                    <div className="w-full relative aspect-[512/340] rounded-[18px] overflow-hidden bg-gray-50 mt-4">
+                    <div className="w-full relative h-fit rounded-[18px] overflow-hidden bg-transparent mt-4">
                         <Image
                             src="/noteable/image-overview.png"
                             alt="Overview - Original notes vs Noteable"
-                            fill
-                            className="object-contain p-4"
+                            width={512}
+                            height={340}
+                            className="w-full h-auto object-contain p-0 bg-none"
+                            unoptimized
                         />
                     </div>
                 </section>
@@ -175,6 +178,7 @@ export default function NoteablePage() {
                                     width={976}
                                     height={594}
                                     className="w-full h-auto object-cover rounded-none"
+                                    unoptimized
                                 />
                                 </div>
                             </div>
@@ -186,13 +190,14 @@ export default function NoteablePage() {
                                 <span>
                                 <span className="font-semibold">Homescreen & Lockscreen Widgets :</span> Always just a tap away—on my phone, wherever I am—because inspiration doesn&apos;t care if my device is locked or not.
                             </span>
-                            <div className="w-full h-fit rounded-[18px] overflow-hidden bg-transparent">
+                            <div className="w-full h-fit rounded-none overflow-hidden bg-transparent">
                                 <Image
                                     src="/noteable/image-2-ideas-widgets.png"
                                     alt="Homescreen & Lockscreen Widgets"
                                     width={512}
                                     height={400}
                                     className="w-full h-auto object-cover rounded-none"
+                                    unoptimized
                                 />
                                 </div>
                             </div>
@@ -204,12 +209,14 @@ export default function NoteablePage() {
                                 <span>
                                 <span className="font-semibold">The Bottom Bar :</span> My favorite bit. It lives at the core of the app. Record or type—whatever&apos;s fastest for my brain right then.
                             </span>
-                            <div className="w-full relative aspect-[512/200] rounded-[18px] overflow-hidden bg-gray-100">
-                                <Image
-                                    src="/noteable/image-3-ideas-bottom-bar.png"
-                                    alt="Bottom Bar Interaction"
-                                    fill
-                                    className="object-cover"
+                            <div className="w-full relative aspect-[512/200] rounded-none overflow-hidden bg-white pl-[157px]">
+                                <video
+                                    src="/noteable/bottombar.m4v"
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    className="absolute inset-0 h-full w-full object-cover pl-[34px] pr-[34px]"
                                 />
                                 </div>
                             </div>
@@ -221,13 +228,14 @@ export default function NoteablePage() {
                                 <span>
                                 <span className="font-semibold">AI is not free :</span> Because Noteable relies on AI-driven features to automatically transcribe and organize your notes, it has associated costs that make charging users a necessary step to maintain quality and sustainability.
                             </span>
-                            <div className="w-full h-fit rounded-[18px] overflow-hidden bg-gray-100">
+                            <div className="w-full h-fit rounded-none overflow-hidden bg-gray-100">
                                 <Image
                                     src="/noteable/image-4-ideas-ai-cost.png"
                                     alt="Pricing screens"
                                     width={512}
                                     height={340}
-                                    className="w-full h-auto object-cover rounded-[18px]"
+                                    className="w-full h-auto object-cover rounded-none"
+                                    unoptimized
                                 />
                                 </div>
                             </div>

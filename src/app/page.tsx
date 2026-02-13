@@ -1,9 +1,73 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+} from "@/components/animate-ui/components/radix/toggle-group";
+import { AnimatePresence, motion } from "motion/react";
 
 const TABS = [
-  { id: "product-design", label: "Product Design", active: true, icon: "/icons/product-design-icon.svg" },
-  { id: "graphic-design", label: "Graphic Design", active: false },
+  {
+    id: "product-design",
+    label: "Product Design",
+    icon: "/icons/product-design-icon.svg",
+    cursor: "pointer",
+  },
+  {
+    id: "graphic-design",
+    label: "Graphic Design",
+    icon: "/icons/graphic-design-icon.svg",
+    cursor: "pointer",
+  },
+  {
+    id: "motion-design",
+    label: "Motion Design",
+    icon: "/icons/motion-design-icon.svg",
+    cursor: "pointer",
+  },
+];
+
+const MOTION_VIDEOS = [
+  { src: "/noteable/bottombar.m4v", title: "Bottom Bar Interaction" },
+  { src: "/noteable/switch.m4v", title: "Switch Interaction" },
+  { src: "/noteable/tick.m4v", title: "Checkmark Animation" },
+  { src: "/noteable/write-erase.m4v", title: "Writing Animation" },
+];
+
+const GRAPHIC_DESIGN_PROJECTS = [
+  {
+    id: "eleague",
+    title: "eLeague - Branding & Visual Exploration",
+    href: "/eleague",
+    thumbnail: "/eleague/thumb-eleague.png",
+  },
+  {
+    id: "phoenix-cafe",
+    title: "Phoenix Cafe - Reusable Cup Ad Campaign",
+    href: "/phoenix-cafe",
+    thumbnail: "/phoenix-cafe/thumb-phoenix.png",
+  },
+  {
+    id: "screenwriting-workshop",
+    title: "Promotional Assets for Screenwriting Workshop",
+    href: "/screenwriting-workshop",
+    thumbnail: "/screenwriting-workshop/thumb-workshop.png",
+  },
+  {
+    id: "koottu",
+    title: "koottu - Logo and Launch Poster",
+    href: "/koottu",
+    thumbnail: "/koottu/thumb-koottu.png",
+  },
+  {
+    id: "universal-mill",
+    title: "Ad for Universal Oil and Flour Mill",
+    href: "/universal-mill",
+    thumbnail: "/universal-mill/thumb-universal.png",
+  },
 ];
 
 const work = [
@@ -43,7 +107,7 @@ function Button({
     <Link
       href={href}
       className={
-        "inline-flex items-center justify-center gap-2 rounded-xl border border-[#d6d6d6] bg-white px-4 py-1.5 font-mono text-sm uppercase leading-[2em] text-[#171717] shadow-[0px_2px_5px_0px_rgba(0,0,0,0.05)] transition hover:border-[#b0b0b0] hover:shadow-md " +
+        "inline-flex cursor-pointer items-center justify-center gap-2 rounded-xl border border-[#d6d6d6] bg-white px-4 py-1.5 font-mono text-sm uppercase leading-[2em] text-[#171717] shadow-[0px_2px_5px_0px_rgba(0,0,0,0.05)] transition hover:border-[#b0b0b0] hover:shadow-md " +
         className
       }
       {...props}
@@ -70,6 +134,7 @@ function SectionHeading({
         width={20}
         height={20}
         className="shrink-0"
+        unoptimized
       />
       <span className="font-sans text-sm font-normal text-[#171717]">
         {label}
@@ -101,11 +166,13 @@ function TimelineItem({
 }
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState("product-design");
+
   return (
     <div className="min-h-screen">
       {/* Header: logo + CTAs, same max-width as main content */}
       <header className="mx-auto flex max-w-[512px] items-center justify-between px-0 py-4">
-        <span className="font-sans text-4xl font-medium text-[#737373]">
+        <span className="font-sans text-xl font-semibold text-[#737373] transition-colors hover:text-[#171717]">
           J.
         </span>
         <div className="flex items-center gap-2">
@@ -128,6 +195,7 @@ export default function Home() {
               width={20}
               height={20}
               className="shrink-0"
+              unoptimized
             />
             LINKEDIN
           </Button>
@@ -145,7 +213,18 @@ export default function Home() {
               kind that spark curiosity and joy.
             </span>
           </p>
-          <Button href="#work">VIEW WORK</Button>
+          <Button
+            href="#my-projects"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("my-projects")?.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }}
+          >
+            VIEW WORK
+          </Button>
         </section>
 
         {/* Work */}
@@ -187,69 +266,161 @@ export default function Home() {
         </section>
 
         {/* Category tabs + My Projects (per Figma) */}
-        <section className="flex w-full flex-col gap-12">
-          <div className="flex flex-nowrap items-center justify-center gap-4">
-            {TABS.map((tab) => (
-              <button
-                key={tab.id}
-                type="button"
-                className={
-                  "inline-flex items-center justify-center gap-2 rounded-xl px-[17px] py-2.5 font-sans text-sm font-medium leading-[1.25em] text-[#171717] transition " +
-                  (tab.active
-                    ? "bg-[#E6E6E6]"
-                    : "bg-[unset] opacity-50 hover:opacity-70")
-                }
-              >
-                {"icon" in tab && tab.icon && (
-                  <Image
-                    src={tab.icon}
-                    alt=""
-                    width={16}
-                    height={16}
-                    className="shrink-0"
-                  />
-                )}
-                {tab.label}
-              </button>
-            ))}
+        <section id="my-projects" className="flex w-full flex-col gap-12">
+          <div className="flex flex-col items-center justify-center gap-6">
+            <div className="flex flex-col items-center justify-center gap-4">
+              <h2 className="font-mono text-base font-medium uppercase leading-[2em] text-black">
+                My Projects
+              </h2>
+              <div className="flex flex-nowrap items-center justify-center gap-4">
+                <ToggleGroup
+                  type="single"
+                  value={activeTab}
+                  onValueChange={(val) => {
+                    if (val) setActiveTab(val);
+                  }}
+                  className="gap-2"
+                >
+                  {TABS.map((tab) => (
+                    <ToggleGroupItem
+                      key={tab.id}
+                      value={tab.id}
+                      className="gap-2 rounded-xl px-[17px] py-2.5 font-sans text-sm font-medium leading-[1.25em] text-[#171717] opacity-50 data-[state=on]:opacity-100 hover:opacity-70 hover:bg-transparent data-[state=on]:bg-transparent transition-all"
+                    >
+                      {tab.icon && (
+                        <Image
+                          src={tab.icon}
+                          alt=""
+                          width={16}
+                          height={16}
+                          className="shrink-0"
+                          unoptimized
+                        />
+                      )}
+                      {tab.label}
+                    </ToggleGroupItem>
+                  ))}
+                </ToggleGroup>
+              </div>
+            </div>
           </div>
           <div className="flex flex-nowrap flex-col justify-center gap-12 py-0">
-            <h2 className="font-mono text-xl font-normal leading-[0.875em] text-[#171717] text-center">
-              MY PROJECTS
-            </h2>
-            <Link
-              href="/noteable"
-              className="group block w-full overflow-hidden rounded-[18px]"
-            >
-              {/* Card image: Group 26 from Figma (phone mockup) */}
-              <div className="relative w-full overflow-hidden rounded-t-[18px]">
-                <Image
-                  src="/noteable-group26.png"
-                  alt="Noteable app"
-                  width={1044}
-                  height={779}
-                  className="w-full object-cover object-top"
-                  sizes="(max-width: 512px) 100vw, 512px"
-                />
-              </div>
-              <div className="flex flex-nowrap flex-col justify-center gap-0 py-4 px-0">
-                <h3 className="font-sans text-lg font-medium leading-[1.56em] text-[#171717]">
-                  Noteable - A Smarter Way to Take Notes
-                </h3>
-                <div className="mt-2 flex flex-row items-center gap-2">
-                  <span className="inline-flex items-center justify-center gap-1 rounded-[17px] border border-[#D6D6D6] bg-white px-3 py-px font-medium text-[#171717] text-xs leading-[2.333em]">
-                    <Image
-                      src="/icons/phone-icon.svg"
-                      alt=""
-                      width={12}
-                      height={12}
-                      className="shrink-0"
-                    />
-                    Mobile App
-                  </span>
-                </div>
-              </div>
-            </Link>
+            <AnimatePresence mode="wait">
+              {activeTab === "product-design" && (
+                <motion.div
+                  key="product-design"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="w-full"
+                >
+                  <Link
+                    href="/noteable"
+                    className="group block w-full overflow-hidden rounded-[18px]"
+                  >
+                    {/* Card image: Group 26 from Figma (phone mockup) */}
+                    <div className="relative w-full overflow-hidden rounded-[18px] border border-[#d4d4d4] shadow-[0px_2px_5px_0px_rgba(0,0,0,0.05)]">
+                      <Image
+                        src="noteable/noteable-header.png"
+                        alt="Noteable app"
+                        width={1044}
+                        height={779}
+                        className="w-full object-cover object-top"
+                        sizes="(max-width: 512px) 100vw, 512px"
+                        unoptimized
+                      />
+                    </div>
+                    <div className="flex flex-nowrap flex-col justify-center gap-0 pt-4 pb-0 px-0">
+                      <h3 className="font-sans text-lg font-medium leading-[1.56em] text-[#171717]">
+                        Noteable - A Smarter Way to Take Notes
+                      </h3>
+                      <div className="mt-2 flex flex-row items-center gap-2">
+                        <span className="inline-flex items-center justify-center gap-1 rounded-[17px] border border-[#D6D6D6] bg-white px-3 py-px font-medium text-[#171717] text-xs leading-[2.333em]">
+                          <Image
+                            src="/icons/phone-icon.svg"
+                            alt=""
+                            width={12}
+                            height={12}
+                            className="shrink-0"
+                            unoptimized
+                          />
+                          Mobile App
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              )}
+
+              {activeTab === "motion-design" && (
+                <motion.div
+                  key="motion-design"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="flex flex-col gap-12 w-full"
+                >
+                  {MOTION_VIDEOS.map((video) => (
+                    <div
+                      key={video.src}
+                      className="flex flex-col gap-4 group w-full"
+                    >
+                      <div className="relative w-full overflow-hidden rounded-[18px] h-fit border border-[#d7d7d7] shadow-[0px_2px_5px_0px_rgba(0,0,0,0.05)]">
+                        <video
+                          src={video.src}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          className="w-full h-fit object-cover transition-transform duration-500 group-hover:scale-105 border-0"
+                        />
+                      </div>
+                      <p className="font-sans text-lg font-medium text-[#171717]">
+                        {video.title}
+                      </p>
+                    </div>
+                  ))}
+                </motion.div>
+              )}
+
+              {activeTab === "graphic-design" && (
+                <motion.div
+                  key="graphic-design"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.2 }}
+                  className="flex flex-col gap-12 w-full"
+                >
+                  {GRAPHIC_DESIGN_PROJECTS.map((project) => (
+                    <Link
+                      key={project.id}
+                      href={project.href}
+                      className={`group flex w-full flex-col gap-4 overflow-hidden`}
+                    >
+                      <div className="relative w-full overflow-hidden rounded-[18px] border border-[#d7d7d7] shadow-[0px_2px_5px_0px_rgba(0,0,0,0.05)]">
+                        <Image
+                          src={project.thumbnail}
+                          alt={project.title}
+                          unoptimized
+                          width={1044}
+                          height={779}
+                          className="w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 512px) 100vw, 512px"
+                        />
+                      </div>
+                      <div className="flex flex-nowrap flex-col justify-center gap-4 px-0 py-0">
+                        <h3 className="font-sans text-lg font-medium leading-[1.56em] text-[#171717]">
+                          {project.title}
+                        </h3>
+                      </div>
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </section>
       </main>
